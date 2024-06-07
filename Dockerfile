@@ -8,11 +8,15 @@ WORKDIR /app
 COPY package*.json ./
 
 
-# Instalar las dependencias del proyecto
-RUN npm install
+#Switch to root user to install dependencies
+USER root
 
-# Si estás construyendo para producción
-# RUN npm ci --only=production
+#Install app dependencies with unsafe permissions
+RUN npm install --unsafe-perm
+
+#Create a non-root user and switch to it
+RUN useradd -m appuser
+USER appuser
 
 # Copiar el código de la aplicación al contenedor
 COPY . .
