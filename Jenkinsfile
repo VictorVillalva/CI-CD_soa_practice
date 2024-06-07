@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'soa 3 test'
+        DOCKER_IMAGE = 'soa_3_test'
     }
 
     stages {
